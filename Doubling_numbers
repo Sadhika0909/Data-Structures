@@ -1,0 +1,10 @@
+#Doubling numbers
+def doubles(user_input):
+    if user_input==1:
+        return 1
+    return doubles(user_input*2)+doubles(user_input-2)
+user_input=int(input("Number of terms: "))
+for i in range(1,user_input+1):
+    print(doubles(i))
+
+    
