@@ -18,6 +18,42 @@ class Tree:
                     self.right=Tree(data)
                 else:
                     self.right.insert(data)
+    def findMin(self):
+        value=self
+        while value.left is not None:
+            value=value.left
+        return value
+
+    def delete(self,data):
+        if data<self.data:
+            if self.left:
+                self.left=self.left.delete(data)
+            else:
+                print("Data not found")
+        elif data>self.data:
+            if self.right:
+                self.right=self.right.delete(data)
+            else:
+                print("Data not found")
+        else: 
+            #when it has no child
+            if self.left is None and self.right is None:
+                print("\nDeleted data: ",self.data)
+                return None
+            elif self.left is None:
+                print("\nDeleted right child is: ",self.data)
+                return self.right
+            elif self.right is None:
+                print("\nDeleted left child is: ",self.data)
+                return self.left
+            else:
+                #when it has two children
+                a=self.right.findMin()
+                print("\nDeleted items is ",self.data)
+                self.data=a.data
+                self.right=self.right.delete(a.data)
+        return self
+
 
 def inorder(r):
     if r is None:
@@ -53,11 +89,14 @@ if __name__=="__main__":
     root.insert("a")
     root.insert("l")
     root.insert("p")
+   
+    print("Inorder traversal: ")
+    inorder(root)
+    print("\nPreorder traversal: ")
+    preorder(root)
 
-print("Inorder traversal: ")
-inorder(root)
-print("\nPreorder traversal: ")
-preorder(root)
-print("\nPostorder traversal: ")
-postorder(root)
+    #calling delete
+    root.delete("w")
+    print("\nPostorder traversal: ")
+    postorder(root)
 
