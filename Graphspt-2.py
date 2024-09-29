@@ -3,15 +3,16 @@ class Graph:
     def __init__(self,v):
         self.v=v
         self.adj=[[]for i in range(v)]
-    def dfsu(self,v,visited):
+    def dfsu(self,v,visited,temp):
         #marking the current vertex as visited
         visited[v]=True
+        temp.append(v)
         print(v,end=" ")
         #loop through all adjacent vertices
         for i in self.adj[v]:
             #if adjacent vertex i is not visited, dfs is performed
             if not visited[i]:
-                self.dfsu(i,visited)
+                self.dfsu(i,visited,temp)
     def dfs(self,start_vertex):
         #marking all vertices as not visited
         visited=[False]*self.v
@@ -47,8 +48,9 @@ class Graph:
         a=[]
         for i in range(self.v):
             if not visited[i]:
-                temp=[]         
-                a.append(self.dfsu(temp,i,visited)) 
+                temp=[]      
+                self.dfsu(i,visited,temp) 
+                a.append(temp) 
         return a
 if __name__=="__main__":
     graph=Graph(7)
