@@ -15,7 +15,7 @@ class Graph:
     def dfs(self,start_vertex):
         #marking all vertices as not visited
         visited=[False]*self.v
-        print("DFS traversal starting from vertex",start_vertex+":")
+        print("DFS traversal starting from vertex",start_vertex,":")
         #calling the recursive function to perform DFS
         self.dfsu(start_vertex,visited)
         print()
@@ -46,9 +46,9 @@ class Graph:
         visited=[False]*self.v
         a=[]
         for i in range(self.v):
-            if not visited[v]:
-                temp=[]
-                a.append(self.dfsu(temp,v,visited)) 
+            if not visited[i]:
+                temp=[]         
+                a.append(self.dfsu(temp,i,visited)) 
         return a
 if __name__=="__main__":
     graph=Graph(7)
@@ -56,6 +56,11 @@ if __name__=="__main__":
     graph.undir(2,3)
     graph.undir(4,5)
     graph.undir(5,6)
+    b=graph.connected()
+    print("Connected components: ")
+    for i in b:
+        print(i)
     #performing dfs
     graph.dfs(0)
-    print("Connected components: ",graph.connected())
+    graph.bfs(0)
+    
