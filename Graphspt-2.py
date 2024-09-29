@@ -50,3 +50,12 @@ class Graph:
                 temp=[]
                 a.append(self.dfsu(temp,v,visited)) 
         return a
+if __name__=="__main__":
+    graph=Graph(7)
+    graph.undir(0,1)
+    graph.undir(2,3)
+    graph.undir(4,5)
+    graph.undir(5,6)
+    #performing dfs
+    graph.dfs(0)
+    print("Connected components: ",graph.connected())
